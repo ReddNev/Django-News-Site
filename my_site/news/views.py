@@ -4,9 +4,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.contrib import messages
 from django.contrib.auth import login, logout
+from django.core.mail import send_mail
 
 from .models import News, Category
-from .forms import NewsForm, UserRegisterForm, UserLoginForm
+from .forms import NewsForm, UserRegisterForm, UserLoginForm, ContactForm
 
 
 def register(request):
@@ -39,6 +40,24 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect('login')
+
+
+def user_mail(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            mail = send_mail(form.cleaned_data['subject'], form.cleaned_data['content'],
+                             'django_test1@mail.ru', ['django_test2@mail.ru'], fail_silently=True)
+            if mail:
+                messages.success(request, 'Письмо отправлено')
+                return redirect('test')
+            else:
+                messages.error(request, 'Ошибка отправки')
+        else:
+            messages.error(request, 'Ошибка регистрации')
+    else:
+        form = ContactForm()
+    return render(request, 'news/user_mail.html', {'form': form})
 
 
 class HomeNews(ListView):
