@@ -42,7 +42,7 @@ def user_logout(request):
     return redirect('login')
 
 
-def user_mail(request):
+def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -50,11 +50,11 @@ def user_mail(request):
                              'django_test1@mail.ru', ['django_test2@mail.ru'], fail_silently=True)
             if mail:
                 messages.success(request, 'Письмо отправлено')
-                return redirect('test')
+                return redirect('contact')
             else:
                 messages.error(request, 'Ошибка отправки')
         else:
-            messages.error(request, 'Ошибка регистрации')
+            messages.error(request, 'Ошибка валидации')
     else:
         form = ContactForm()
     return render(request, 'news/user_mail.html', {'form': form})
