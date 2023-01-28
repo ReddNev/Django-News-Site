@@ -1,5 +1,6 @@
-from django.urls import path
+from django.urls import path, include
 from django.views.decorators.cache import cache_page
+from news.rest.urls import router
 
 from .views import *
 
@@ -12,6 +13,7 @@ urlpatterns = [
     path('category/<int:category_id>/', NewsByCategory.as_view(), name='category'),
     path('news/<int:pk>/', ViewNews.as_view(), name='view_news'),
     path('news/add-news/', CreateNews.as_view(), name='add_news'),
+    path('api/', include(router.urls)),
 
 ]
 
