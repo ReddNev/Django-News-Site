@@ -26,12 +26,14 @@
             <div class="media-body">
                 <h5 class="card-title">{{ item.title }}</h5>
                 <p class="card-text">{{ item.content|safe|linebreaks|truncatewords:50 }}</p>
-                <a href="{{ item.get_absolute_url }}" class="btn btn-primary">Read more</a>
+                <a href="{{ item.get_absolute_url }}" class="btn btn-primary">Прочитать</a>
             </div>
         </div>
     </div>
-    <div class="card-footer text-muted">
-        {{ item.created_at|date:"Y-m-d H:i:s" }}
+   <div class="card-footer text-muted">
+      <small class="text-muted"> {{ item.created_at|date:"Y-m-d H:i:s" }} </small>
+       ::
+       <small class="text-muted"> Просмотры: {{ item.views }} </small>
     </div>
 </div>
 {% endfor %}

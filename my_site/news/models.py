@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, transaction
 from django.urls import reverse
 
 
@@ -11,6 +11,11 @@ class News(models.Model):
     is_published = models.BooleanField(default=True, verbose_name='Опубликовано')
     category = models.ForeignKey('Category', on_delete=models.PROTECT, verbose_name='категория')
     views = models.IntegerField(default=0)
+
+    def update_views(self):
+        with transaction.atomic():
+            self.views += 1
+            self.save()
 
     def get_absolute_url(self):
         return reverse('view_news', kwargs={'pk': self.pk})

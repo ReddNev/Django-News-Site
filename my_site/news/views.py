@@ -5,7 +5,6 @@ from django.core.paginator import Paginator
 from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.core.mail import send_mail
-
 from .models import News, Category
 from .forms import NewsForm, UserRegisterForm, UserLoginForm, ContactForm
 
@@ -95,13 +94,18 @@ class NewsByCategory(ListView):
 class ViewNews(DetailView):
     model = News
     context_object_name = 'news_item'
+    queryset = News.objects.all()
+
+    def get_object(self):
+        obj = super().get_object()
+        obj.update_views()
+        return obj
 
 
 class CreateNews(LoginRequiredMixin, CreateView):
     form_class = NewsForm
     template_name = 'news/add_news.html'
     login_url = '/admin/'
-
 
 
 # def index(request):
