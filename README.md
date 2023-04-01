@@ -1,4 +1,4 @@
-# Клонируем репозиторий:
+# Clone the repository:
 ```shell
     >>> https://github.com/ReddNev/Django-News-Site.git
 ```
