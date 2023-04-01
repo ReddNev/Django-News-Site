@@ -3,46 +3,46 @@
     >>> https://github.com/ReddNev/Django-News-Site.git
 ```
 
-# Переходим в папку с проектом:
+# Go to the project folder:
 ```shell
     >>> cd my_site
 ```
 
-# Устанавливаем виртуальное окружение:
+# Installing the virtual environment:
 ```shell
     >>> python -m venv venv
 ```
 
-# Запускаем виртуальное окружение:
+# Launching the virtual environment:
 ```shell
     >>> venv/Scripts/activate
 ```
 
-# Как запустить:
+# How to start:
 ``` shell
     >>> python manage.py runserver
 ```
 
-# Как сделать миграцию:
+# How to make a migration:
 ```shell
   >>> python manage.py makemigrations
   >>> python manage.py migrate
 ```
 
-# Как загразить dumb DB: 
+# How to download dumb DB: 
 ```shell
   >>> python manage.py makemigrations
   >>> python manage.py migrate
   >>> python manage.py loaddata ./news/fixtures/data.json
 ```
 
-# Чтобы управлять записями в БД через админ панель, создайте суперпользователя:  
+# To manage records in the DB through the admin panel, create a superuser:  
 ```shell
     >>> python manage.py createsuperuser
 ```
 
 
-# Вход в админ панель:
+# Login to admin panel:
 ```shell
     >>> http://127.0.0.1:8000/admin/
 ```
@@ -50,11 +50,11 @@
 ```shell
    >>> http://127.0.0.1:8000/api/news/
 ```
-# Примеры запросов:
+# Request examples:
 ```shell
     >>> GET /api/news/17/
 ```
-# Ответ:
+# Response:
 # {
     "id": 17,
     "title": "Корпоративный шлюз веб-безопасности: какие требования предусмотреть для замещения иностранной системы",
